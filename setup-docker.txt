@@ -8,13 +8,13 @@ CMD [ "node", "/app/app.js" ]
 EXPOSE 3000
 
 ### Execute Cmd 
-docker build -t name_project .
+docker build -t name_project:version .
 
 ### Cek image Docker Images
 docker images
 
-### Runing Project Docker
-docker run -p 3009:3009 name_images 
+### Runing Project Docker Development
+docker run -d -p 3009:3009 name_images:version
 
 ### Cek proses yang berjalan
 docker ps
@@ -27,3 +27,39 @@ docker rmi images_id
 
 ### Mengapus Paksa Images
 docker rmi images_id -f
+
+
+
+### Devlop With File Docker
+1. Create file docker Dockerfile.dev (untuk depelopment)
+    FROM node:alpine
+    WORKDIR /app
+    COPY package* .
+    RUN npm run install
+    COPY . .
+    EXPOSE port
+    CMD ["npm","run","dev"]
+
+    - Setting package.json defineConfig
+        server:{
+            host:"0.0.0.0",
+            port:3000
+        },
+2. Create file docker Dockerfile.stg (untuk preview)
+    FROM node:alpine
+    WORKDIR /app
+    COPY package* .
+    RUN npm run install
+    COPY . .
+    RUN npm run build
+    EXPOSE port
+    CMD ["npm","run","preview"]
+
+    - Setting package.json defineConfig
+        server:{
+            host:"0.0.0.0",
+            port:3000
+        },
+        preview:{
+            port:3001
+        }
