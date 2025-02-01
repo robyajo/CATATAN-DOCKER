@@ -1,0 +1,23 @@
+### Craeate Docker Dile
+Dockerfile
+
+### Set Dockerfile
+FROM node:latest
+COPY . /app
+CMD [ "node", "/app/app.js" ]
+EXPOSE 3000
+
+### Execute Cmd 
+docker build -t name_project .
+
+### Cek image Docker Images
+docker images
+
+### Runing Project Docker
+docker run -p 3009:3009 name_images 
+
+### Cek proses yang berjalan
+docker ps
+
+### Mematikan proses yang berjalan
+docker stop name_container
