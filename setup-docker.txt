@@ -45,6 +45,8 @@ docker rmi images_id -f
             host:"0.0.0.0",
             port:3000
         },
+
+    - execute = docker build -t name_images-dev/name_project:1.0.0 -f Dockerfile.dev .
 2. Create file docker Dockerfile.stg (untuk preview)
     FROM node:alpine
     WORKDIR /app
@@ -63,3 +65,5 @@ docker rmi images_id -f
         preview:{
             port:3001
         }
+
+    - execute = docker build -t name_images-stg/name_project:1.0.0 -f Dockerfile.stg .
