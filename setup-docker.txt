@@ -21,3 +21,9 @@ docker ps
 
 ### Mematikan proses yang berjalan
 docker stop name_container
+
+### Mengapus Images
+docker rmi images_id 
+
+### Mengapus Paksa Images
+docker rmi images_id -f
